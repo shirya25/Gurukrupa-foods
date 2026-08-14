@@ -86,7 +86,7 @@ export default async function PayBillPage() {
           <img src="/qr.png" alt="Payment QR Code" width={160} height={160}
             style={{ display: 'block', borderRadius: 4 }} />
         </div>
-        <p className="upi-id">UPI: gurukrupafoods@upi</p>
+        <p className="upi-id">UPI: deeptigodbole365@okaxis</p>
       </div>
     </>
   );
