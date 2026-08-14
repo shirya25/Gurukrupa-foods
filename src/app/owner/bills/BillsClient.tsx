@@ -56,13 +56,14 @@ export default function BillsClient({
     const currently = isPaid(cid);
     const result = await ownerToggleMonthPaid(cid, viewYear, viewMonth, currently);
     if (result.error) { alert(result.error); setToggling(null); return; }
+    const newPaid = result.is_paid ?? currently;
     setPayments(prev => {
       const exists = prev.find(p => p.customer_id === cid && p.year === viewYear && p.month === viewMonth);
       if (exists) {
         return prev.map(p => p.customer_id === cid && p.year === viewYear && p.month === viewMonth
-          ? { ...p, is_paid: result.is_paid } : p);
+          ? { ...p, is_paid: newPaid } : p);
       }
-      return [...prev, { customer_id: cid, year: viewYear, month: viewMonth, is_paid: result.is_paid }];
+      return [...prev, { customer_id: cid, year: viewYear, month: viewMonth, is_paid: newPaid }];
     });
     setToggling(null);
   }
